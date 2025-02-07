@@ -1,2 +1,2 @@
-const serverURL="http://localhost:3000"
+const serverURL="https://project-fair-server-ygvk.onrender.com"
 export default serverURL
