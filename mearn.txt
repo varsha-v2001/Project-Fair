@@ -1,0 +1,584 @@
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                      JavaScript  in front end
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    1. Used to provide behaviour to HTML elements
+    2. Applying JS to HTML elements
+    - Internal JS - JS code in script tag
+    - External JS - Link an external JS file using script tag
+    3. DOM : Document Object Model : Tree structure using object corresponding to a webpage  
+    4. DOM methods: used to select HTML elements into JS
+        - Using tag : document.getElementsByTagName("tag")
+        - Using id: document.getElementsById("tag") / id
+        - Using id: document.getElementsByClassName("tag") / id
+        - Using querySelector : document.querySelector("tag/#id/.class") returns single value
+        - Using querySelectorAll : document.querySelectorAll("tag/#id/.class") returns all value 
+    5. Events : triggered by user action, events occured in html elements
+        - Mouse triggered events: click, hover, drop and drag
+        - Keyboard related events: key press down,up...etc
+        - Touch related events: 
+    6. Handle an event in HTML : event-function-call(),behaviour change must define as a function
+    7. Access / update an content  in JS:
+        - innerHTML /innertext property
+    8. Permanently store data in browser
+        - data will be stored permanently, data will be stored as key value pairs,type of both key and value must be string.
+        to convert value to string - use JSON.stringify(value)
+        string data to normal type: JSON.parse(value)
+        - Local storage: 
+            -setItem(key,value): used to store data
+            -getItem(key): used to get value from storage
+            -removeItem(key): used delete a value from a storage
+            clear(): used to clear storage
+        - Session storage: after closing the session the data will be removed
+    9. Working browser Js runtime environment: 
+        - JavaScript engines: It handles js execution, convert js code to code that is understand by the browser engine.
+        - Call stack: data structure used to keep track of currently executing functions, make sure each one finishes before moving to next. Only one call stack in JS engine thats why it's known as single threaded programmming.
+            - JS handles 2 types of functions
+            - Syncronous function: functions executes without any delay
+            - Asyncronous function: functions executes with some delay
+                - callback functions:stored in Task Queue (macro task queue)- like setTimeOut(),user events like click,drag,etc.
+                - Web APIs: stored in micro task queue which is a priority queue
+            - Event loop: It manages the flow of the code , ensuring asychronous operation and user interaction run smoothly
+        - Heap: Storage for variable and objects in JS.
+    10. Asyncronous function handling in js
+        - Call back function: Nesting of callback function will leads to callback hell, that means js won't give any response for this kind of call
+            - Promise: used to resolve asyncronous function, it will definitely gives you a response. Two ways to resolve promise:
+                - resolved state: if an asyncronous function call returns a response that state of promise is known as "resolved state". to get response from resolved state we have to use then method.
+                - reject state: if asyncronous function call returns nothing after making the call, that state is called reject state. catch method .
+                - async - await keywords: To make pomise much more easier, to avoid callback from promise, if a function is asyncronous then we can use await inside the function.
+                        - async: makes function return a promise
+                        - await: makes a function to wait for a promise
+    11. API (Application Programming Interface): used to communicate between applications using internet.
+        - Types of APIs: Based on communication
+            - REST /SOAP : CLient server communication
+            - GRAPHQL : CLient server communication used in bulk data
+            - SOCKET : WEB chatting applications
+        - API testing tools:
+            - Postman: used in react 
+            - Thunderclient: used in js
+    12. URL (uniform resource locator): 
+        ex: https://jsonplaceholder.typicode.com/users/1
+            - Base URL: https://jsonplaceholder.typicode.com
+            - URI: uniform resource identifier ex:users
+            - Path Parameter:comes after URI
+        ex: https://www.google.com/search?q=logo&sca_esv=7cffce009da9068a&ei=6PQ6Z-7xC_OXnesPzvzhiQw&ved=0ahUKEwjuhfDbteW
+            - Query Parameter: value after ? in URI ex: ?q=logo&sca_esv=7cffce009da9068a&ei=6PQ6Z-7xC_OXnesPzvzhiQw&ved=0ahUKEwjuhfDbteW
+    13. HTTP (hypertext transfer protocol) : used to allow applications to make request via internet
+            - 2 Parts:
+                - HTTP request: Client application will make request to server
+                    - 2 parts:
+                        - header part: to keep secret data
+                        - body part: used to hold the data(binary,xml,JSON..in REST) to be transfered from Client to server
+                    - HTTP methods:
+                        - GET: used to get/read data from an application
+                        - POST: used to create/store data
+                        - PUT: update data completely
+                        - PATCH: used to update data partially
+                        - DELETE: used to remove data 
+                        
+                - HTTP response Status: To get the response status of request, browser is using HTTP response. Server application provides the response.
+                    - status codes:
+                        - 1XX : Informational error
+                        - 2XX : success
+                        - 3XX : Redirection
+                        - 4XX : Client error
+                        - 5XX : Server errors
+    14. JSON(javascript object notation): Is a data format used to transfer data from application to another application using internet.
+        - data stored as key alue pairs,here "key" must be string type
+            ex: "name":"max"
+    15. API call in js : AJAX(asyncronous javascript and xml): methods to make api calls using js.
+            - API call using - XMLHttpRequest(XHR)
+                XMLHttpRequest class has predefined functions and properties to make sending request and response between application in internet.
+                - Object of XMLHttpRequest is used to interact with server application.
+                - XMLHttpRequest class properties:
+                        - readyState: returns a number which indicates the state of a request, if readyState == 4 then receives the response.
+                        - responseText: returns a string that contain the response to the request as text.
+                        - status: return response status code of the request.
+                - XMLHttpRequest class methods:
+                        - open(): used to initialise a request
+                        - send(): send the request
+                - Events: 
+                        - onreadystatechange: event to occur whenever the value of readystate changes.
+                - Steps make an API call:
+                        1. Initialise an object for XHR class
+                        2. Initialise a request using open method
+                        3. send request
+            - API call using - fetch
+                    - fetch() function returns promise, then resolved response will get from "then" method and reject response get from "catch" methods
+            - API call using Axios Libraries: Axios is a promise based http client for node.js and the browser. To install "npm install axios"
+            
+    16. JavaScript modules : used to transfer data from one js to another.
+            - use Import / Export statements
+                - Export statements: used to share data from one js file to another, can be used in different ways,
+                    -using export keyword: used to export multiple data from a single js file
+                    - using export default keyword: this keyword must be at the end of that file.
+                - Import statements: used to use exported data from another js file
+                  2 types:
+                    - import with curly braces: if data exported using export keyword
+                    - import without curly braces: if data exported using export default keyword
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                REACT:  Advanced Frontend Application Library
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    1. Basic React:
+        - React App is a collection of diffferent libraries.
+        - React App is consist of diffferent components, which used to display contents on browser. All the components are arranged in a tree structure. Tree structure has a single parent/root node which is by default known as  "APP component", components are reusable.
+        - Pure Js functions to bulid components, it return how to display contents in browser. These functions are capable of doing single task with the help of arguments. Functions with no side effects.
+        - Declarative approach
+        - Virtual DOM: Light-weight memory representation of real DOM.
+        - Babel Library: used to display contents into browser.
+        - JSX (Javascript XML): JS extension for writing HTML code in JavaScript, which is ised to display contents in browser.
+            - JSX elements: ex:- const heading = <h1> Heading </h1>
+            - Rules for using JSX: 
+                - Every JSX elements must be inside a single tag. Parent tag can be any container tag(div, article, section, etc) or react fragments(<> </>)  tag without name.
+                - In JSX, we have to use "camel case" to write JSX contents. ex:- fontSize
+                - Every JSX code must have a closing tag. If a tag has content then :
+                    <startingTag> content </endingTag>. If a tag has no content:
+                    <startingTag></endingTag> or we can use self closing tags( <startingTag/> ) 
+                - Instead of attribute "class" use "className" in JSX
+                - Instead of attribute "for" use "htmlFor" in JSX
+                - In JSX, we can directly pass JS code inside a curly braces (eg: {js code} )
+    2. React App Creation
+        - 2 ways to create react App
+            - CRA ( using create-react-app command): not using so much
+            - Vite : tool for building web applications
+                - Installing vite globally: npm i -g create-vite
+                - React app creation using Vite: npm create vite@latest reactAppname -- --template react
+                - to generate bulid folder to deploy react app using netlify: npm run build
+    3. Files and Folder structure of react app using vite
+        - package.json file : npm configuration file for the project
+        - package-lock.json file :  used to hold version of dependent package of the project.
+        - eslint.config.js file : which may contain js configuration files
+        - node_modules folder : used to locally store dependent packages of project, we can generate node_modules folder with the help of command npm install/ npm i 
+        - public folder : used to hold data that can be accessed by any part of the project.
+        - index.html file: entry point of react application.
+        - src folder : logic of react application is defined here.
+            - main.jsx file : used to render (display in browser) react app in html element with id as "root".
+                - createRoot(): create a root to display react components inside a browser DOM node.
+            - css file: used to define style for all components in react app.
+            - App.jsx file : used to create react root component
+            - assets folder: used to hold media files used in react project
+    4. Components: used to display content in browser, to create component create a jsx or js file with filename starting capital letters.
+        - create components in two ways 
+            - Function based components / stateless components : use js pure functions to bulid components, function name must be similar as its filename. It must return jsx code.
+            - Class based / stateful components : uses class to create components. class inherit react component class, render method in class used to return jsx. before using reference super constructor must be used in the constructor.
+            - Life Cycle methods of a react component
+                - Mounting phase: Putting jsx into DOM 
+                    - constructor()
+                    - getDerivedStateFromProps()
+                    - render()
+                    - componentDidMount()
+                - Updating phase: When componentget updated
+                    - getDerivedStateFromProps()
+                    - getSnapshotBeforeUpdate()
+                    - shouldComponentUpdate(): return boolean value
+                    - render()
+                    - componentDidUpdate()
+                - Unmounting phase: Removing component from DOM 
+
+            Class based components                                                                             Function based components
+        --------------------------------                                                                    -------------------------------
+        1. Using class to create, render method must return jsx                                    1. Using js pure functions and return jsx
+        2. Stateful component                                                                      2. Stateless component
+        3. Hooks are not used                                                                      3. Hooks are used 
+        4. constructor is used to initialise state                                                 4. No need of constructor
+        5. Life Cycle methods are available                                                        5. Life Cycle methods are not available
+
+
+    5. Data sharing between react components
+        - data can be transferred from parent to child : use "props" Object
+    6. Props: It is property of a component. It s an object used to transfer data from parent to child, parent data can be shared via child tag attribute. to access parent data in child use "props" as an argument in child component function.
+    7. Conditional rendering: used based on Condition rendering jsx elements in browser, using if-else , ternary operator/if statement (&& operator)
+    8. List in react: use map array method. set a key attr to duplicating jsx element in a list.
+    9. CSS styling in react: 
+        - inline CSS: use style attribute to apply style to jsx element, style must be as js object
+            - syntax: style ={{css property}}
+        - External CSS: define css style in an external css file. link css file to componentfile using import statement. we cannot importcss file inro a variable in component file 
+            - import 'css file path'
+        - using CSS mule files: file with extension .module.css is known as css 'module file', in this we have to define style in class. to use module css file we have to import it to the component file.
+            - import variableName from 'module css file path' , to apply style in component, use variableName.className in curly braces
+        - Important css styling component libraries:
+            - Material UI: npm install @mui/material @emotion/react @emotion/styled
+            - React Bootstrap: npm install react-bootstrap bootstrap. choose a theme in order to apply bootstrap property in react property.use bootswatch for selecting themes.(bootswatch=> download dropdown=> bootstrap.min.css). Add bootstrap.min.css inside src folder in our project. Import bootstrap.min.css file to main.jsx file of project.
+            - Tailwind CSS: npm install -D tailwindcss postcss autoprefixer, npx tailwindcss init -p and use the guidelines from your given link "https://tailwindcss.com/docs/guides/vite".
+    10. Event handling in react: syntax: event = {function call}
+        - Binding function without arguments: event ={functionName}
+        - Binding function with arguments: event = {()=> functionName(argument)}
+        - Binding function with arguments as event: event ={(event)=>functionName(event)}
+    11. State in react: used to store data of a component, when a state value change component will rerender
+    12. HOOKS in react: predefined methods in react. used to provide component features to function based component. to use a hook in a functional component, it has to be call the hook:
+        - rules to call hooks in functional component
+            - import hook in component file
+            - to use hook in component, call the hook in the top level of component
+            - hooks can't be Conditional
+        - Based on react features there are different types of hooks are available
+            - Built in Hooks
+                - useState(initial value) hook: used to create state in functional component, this hook will return an array of 2 arguments. First argument is a state, second argument is a function name used to update state. State updating function name must start with 'set'.
+                - useEffect(callbackfn, dependency): used to apply side efffects to a functional component.  we can pass side effects as its first argument as callback function, we can also pass an optional dependency argument to decide when to apply side effects in component.
+                - useRef(initial value optional): is a react hook that lets you reference a value that's not needed for rendering. initial value is optional, it returns an object "Current" key.
+                - useSelector(): hook used to select state from a redux store.
+                - usedispatch(): hook used to dispatch action from component.
+                - useParams(): hook will return dynamic value of route associated with component.
+            - custom hooks: create a js file to define a specific function for a special task. export the function from that file. function name must start with "use" keyword.
+    13. Form HAndling in react: There are 2 ways to manage data inside the form by a component.
+        - Controlled Components: are components which store form data inside its own state.
+        - Uncontrolled Components: components which access form data using its DOM elements reference.
+    14. Set up path or URL for component in react: use package react-router-dom 
+        - install react-router-dom: npm i react-router-dom
+        - steps to set up path/url for component:
+            -1. Render the entire react app inside "BrowserRouter" component of react-router-dom library, provide this in main.jsx file.
+            -2. Inorder to set up path for component, make each component must be inside "Routes" component of react-router-dom library , provide this step inside App.jsx file.
+            -3. To set up path for a component, use "Route" component of react-router-dom library, Route component has attributes like "path" and "element" inorder to setup routes for component. All Route components must be inside Routes component.
+        - Dynamic Routing: we can set up a dynamic value in a url along : symbol, so react
+    15. Higher order components(HOC): are components whose props argument will give another component, ex: Route component
+    16. Axios call in react:
+            - using axios library: install axios: "npm install axios"
+            - To make http request using axios: axios(config)
+                - config: is a predefined object wuth keys:(method, url, data, headers)
+            - HTTP response using axios will always return object wth predefined keys (data(server response), status, statusText)
+            - Create services folder inside src of your react app
+
+    17. Data sharing between components in react:
+        - State Lifting: data sharing using props. we will create state in common parent odf data to be shared components. share state updation function one component and state to another component.
+        - using redux library
+        - using Context API
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                Context API- Data sharing methods in react
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Avoid props drilling while sharing data between components.
+    2. To share data it uses context of react, with the help of context we can share data inside.
+    3. steps to perform data sharing using context API
+        - Create context: use createContext() in react
+        - use provider odf context to share data to the components, provider value key will help context to share data, we can pass value as object
+        - To access context form component: use useContext hook, useContext(context_name) we give data shared via context.
+    4. Create a folder for context 
+        - Inside folder create react component for sharing data between components using context.
+        - create context and export it
+        - create state inside component
+        - use context provider provide the state as its value to the component children
+        - use children props inside the component to get the all children of it
+        - wrap the component inside root component of react app inside main.jsx
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                REACT with API project steps
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Create a react project using vite
+    2. Remove unwanted code from app.css,App.jsx,index.css
+    3. Install any styling library to project
+    4. Create a folder for different pages for this application in src folder
+    5. Setup path for components using react router dom library
+    6. Create a component folder in order to hold reusable codes in different pages of react app,create component file inside it.
+    7. To make API call in react: use axios(config) method, POST,GET,PUT,DELETE request.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                JSON Server Creation
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Create a server folder to store JSON file.
+    2. Create a package.json file (npm configuration file) inside server folder: use command :- npm init -y.
+    3. Install json server package in server folder to run json file, use command "npm i json-server"
+    4. Create json (db.json) file for storing project data. Create resources in json data.
+    5. To run json file and available in browser port. use command in server folder: "npx json-server db.json"
+
+    Server deploy: delete the beta version line from package.json and run "npm i json-server@0.17.4" in server terminal
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                JSON Server Deployment
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. create a file index.js inside server folder.
+    2. Update scripts key of package.json file with ("start":"node index.js") and remove test key from it.
+    3. Create .gitignore file, to add node_modules inside it.
+    4. Define steps to run db.json file using json-server in index.js
+        - import json-server
+        - Create a server for mediaplayer app inorder to run our server app. (create)
+        - create a middleware to convert json data to js. (defaults)
+        - create a port for executing our app.(3000)
+        - set up a path/route db.json file  so that client can make a request.(router)
+        - use the middleware and route inside server.(mediaplayerserver.use())
+        - run the server using given port.
+        - to execute our app we have to use : node index.js in terminal, so that we can see the output in localhost:3000
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                REDUX-state management tool 
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+    1. A JavaScript Library for predictable and maintainable global state management
+    2. consists 2 Packages
+        - react-redux : React Redux is a state management library for React applications. Official React bindings for Redux. command: "npm install react-redux"
+        - redux-toolkit: node package that simplify the development by providing utility functions. It is made to simplify the creation of redux store and provide easy state management.The official, opinionated, batteries-included toolset for efficient Redux development. command: "npm install @reduxjs/toolkit"
+            - store: configureStore()
+            - reducer: hold updated state
+            - action: logic to update state in component and its o/p automatically go to reducers
+    3. Important API used in redux:
+        - configureStore(): used to create store for redux
+            - steps to create redux store in react app
+                - create a folder redux logic in src folder
+                - Inside redux folder create a js file for creating redux store
+            - To provide store to our react app, use "Provider" component of react-redux library. Provider component has 'store' attribute using it we can provide our store to react app. Inorder to do that, make Provider component as the root component of our react app. Give these steps in main.jsx file.
+            - createReducer(): used to create reducers where we can store updated state inside store.
+            - createAction(): used to create action where we can define logic to update state, output of action automatically return to its reducer.
+            - createSlice(): used to combine action and reducer in a single file.
+                - steps to use slice in react app:
+                    - create a js file for creating slice 
+            - createAsyncThunk(): used to make asyncronous call in an action in redux. It accepts 2 arguments, first is action type string ("slice-name/action-name"), second is callback function it can return a promise. its output can be 3 types:
+                - Pending 
+                - Fullfilled
+                - Reject
+                "extraReducers" in state can handle promise return action. Because it define different cases to update slice state, based on promise output.
+    4. Hooks used in component for managing state using redux:
+        - useSelector(state=>state.reducer_name): used  to select state from store in a component.
+        - usedispatch(): used to execute an action from a component. Hook will return a function that is capable of dispatching an action as its argument when we call the function.
+            - action without argument: dispatch_func(action_name())
+            - action with argument: dispatch_func(action_name(arg1..)), to access argument of action in slice, reduce function uses its second argument which is an object with 2 keys payload and type. payload will give the argument from action dispatched by the component.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                Steps to build mern project
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Create vite react app for frontend.
+    2. Remove unwanted codes from App.jsx,App.css,index.css.
+    3. install css styling library.
+    4. create pages folder for different pages of react app, inside we create component file.
+    5. set up path/URL for each pages of react app
+    6. create component folder for olding part of different pages of react app,inside we create component file.
+    7. 
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                                MONGODB- DATABASE
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Database used to store and manage data permanently (firebase,MySQL,SQL,MongoDB,Oracle,MSAccess)
+    2. MongoDB is a NoSQL database, data stored as JSON documents it stored in memory as BSON data. ({"key":value}), To store multiple JSON document is known as collection
+    3. Difference between SQL and MongoDB
+                                SQL                                                     MongoDB
+            ------------------------------------------------          ----------------------------------------------------
+            1. Relational SQL DBMS                                     1. Document oriented NoSQL DBMS
+            2. Data stored in table,every table must have              2. Data stored in collection, as JSON document
+                rows and fixed columns
+            3. uses fixed schema                                       3. uses dynamic schema
+            4. Support rich set of datatypes                           4. Limited set of datatypes
+            5. Uses in traditional business App                        5. used in big data and realtime App
+            6. Optimized for complex and join transactions             6. Optimized for scalability & performance
+
+    4. MongoDB in the following environments:
+        - MongoDB Atlas: The fully managed service for MongoDB deployments in the cloud
+        - MongoDB Enterprise: The subscription-based, self-managed version of MongoDB
+        - MongoDB Community:  The source-available, free-to-use, and self-managed version of MongoDB
+    5. MongoDB Shell/ Mongosh: is terminal used to write MongoDB codes
+    6. Collection: used to store json documents, to name a collection use only small letters and its plural format.
+    7. MongoDB generate a unique value to identify each collection using _id key, its value is a hexadecimal number.
+    8. CRUD operations performed in MongoDB:
+        - To get or read a single document from MongoDB collection: use findOne({key:value}) method
+           (show collections-used to display collection in our database) will return the entire document whwn the key is present otherwise null.
+        - find() - to read all document from MongoDB collection and which will return all document present in collection. 
+        - insertOne({key:value}) - To insert a single document to the MongoDB collection.
+        - insertMany([{key:value},....]) - to insert multiple document to MongoDB collection.
+        - countdocument() - to get the total count of documents in a collection.
+        - limit(count) - to limit documents while getting from collection.
+        - skip(count) - to skip documents while getting from a collection.
+        - sort({key:1/-1}) - to sort documents while getting from a collection.
+            find({key:{$gt/$gte/$lt/$lte/$eq/$neq/$exists/$regex/$expr}})
+        - updateOne({key:value,{$set:{key:value}}}) - to Update single document
+            - we can update statements : $set,$inc,$push,$pull
+        - deleteOne({key:value})- to delete a single document
+        - deleteMany([{key:value}])- to delete multiple document
+    9. Aggregation: used to combine/joining two collection in MongoDB
+        - using $lookup:
+            {
+                $lookup:
+                    {
+                    from: <collection to join>,
+                    localField: <field from the input documents>,
+                    foreignField: <field from the documents of the "from" collection>,
+                    as: <output array field>
+                    }
+            }
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                            Server side /Backend: used to resolve the client/frontend request
+---------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                            Node js : provide a runtime environment for js outside the browser
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Is a free source, cross platform runtime environment that lets us  to create servers (use to resolve multiple client requests), we app, command line tools and scripts.
+    2. features:
+        - Extremely features
+        - Highly scalable
+        - Asyncronous functions
+    3. Node js Global Objects: Objects can be accessed throughout node app without importing it. eg: "process" objects, "environmental variable" in process used to store system configuration / secret data / password of an application
+    4. Node js Module system: used to share data from one file to another file using "CommonJSModule" system
+        - require("package_name/file_path") : to import data from one file/package to another
+        - module.exports/exports keyword: to export data from a file
+        - predefined/ built in modules in node js
+            - fs module : file system module, handles file system of a computer
+            - http module : used to create http server
+            - https module : used to create https server
+            - event module : manage userdefined events
+            - crypto module : secure data handle 
+    5. Execution model: Event driven, non blocking I/O model, optimised asychronous task
+    6. API Access: access to system level API (file system, network, process)
+    7. Working of node js: used to resolve client request and send response while Working with single threaded
+        - non-blocking
+        - Asyncronous functions
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                        Express js : Node js frameork used for server creation
+---------------------------------------------------------------------------------------------------------------------------------------------
+    1. used in client side application, to create server with node js features.
+    2. steps to create express server for resolving client request
+        - create server folder for server application
+        - create package.json file inside server folder, use command: npm init -y.
+        - update package.json file "script" key value as the following object, {"start":"node index.js"} and we have to remove test key and value from it.
+        - install packages needed to create node server app.
+            - express package : used to create server - npm i express
+            - cors package : used to enable cross origin resource sharing - npm i cors
+            - dotenv package : used to load content .env file into process object - npm i dotenv
+            - mongoose package : used to communicate between node js app and MongoDB - npm i mongoose
+            - jsonwebtoken : used for authorization - npm i jsonwebtoken
+            - multer : used for handling multipart/formdata - npm i multer
+        - create .env file in server folder, which used to store environmental variables of a project/app 
+        - create .gitignore file in server folder. which is used to store files/folders to be ignored while adding to git and add node_modules and also .env 
+        - create index.js file to define express server for resolving client request from browser.
+            - import express, dotenv and cors in index.js file.
+            - create express server using express package.
+            - use cors in our server app, to enable data sharing between different application.
+            - use express.json() in server app for parsing json data from client request.
+            - create a port for server app
+            - run server app in specified port
+            - run server using command : node index.js
+            - to resolve http request using express server:
+                - expressServerName.httpRequestMethod("path",(request,response)=>{
+                    using response object share response to client
+                })
+            - server has to use express.static('static file/folder path') to export the static file/folder from server.
+            
+            - How to setup path/url for resolving client request in server:
+                - Create routes folder in server folder and create a js file inside the routes folder for defining path/route corresponding to client request.
+                - steps to define path in js file:
+                    - import express
+                    - create an object for express router class which is capable of setting a routes in server.
+                    - export the object of express router class
+                    - import object of express router class and use in server application.
+                    - to set up route syntax:
+                        - RouterObject.httpRequestMethod('path',controllerName)
+                - To set up controller for server app : used to define logic to resolve client request
+                    - create a folder for controllers in server, and create a js file in it for defining logic to resolve  client request.
+                    - export each controller logic from js file
+                    - import controller in router.js file and use the controller in corresponding request.
+                    - syntax of controller: 
+                        - controllerName =(req,res)=>{
+                            using response object share server response to Client
+                        }
+                - To set up database connection from node js server 
+                    - create a folder for defining db connection in server folder
+                    - inside db folder ceate js file to define connection steps
+                        - import mongoose
+                        - get db connection string from MongoDB Atlas to js file 
+                        - To connect with MongoDB, use connect method of mongoose pass connection string as its argument, itl will return promise.
+                        - import js file in index.js file.
+                - To set model for communicating node js and MongoDB
+                    - create model folder in server folder
+                    - create js file inside the folder for creating model
+                    - create model using Schema 
+                    - export model
+                - To set up authorization using middleware
+                    - create folder for middleware in serer folder
+                    - create js file inside folder to define middleware and export the middleware
+                    - use the middleware in route before (project) controller 
+                - To handle multipart/formdata request using multer
+                    - create a js file inside middleware folder
+                    - import multer
+                    - create a 'upload' folder in server for storing uploaded files
+                    - define storage object in js file
+                    - created multer instance using storage and export it from that file, use it in route
+                    
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                        MONGOOSE : node js package for MongoDB data modelling
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Mongoose is an ODM (object data modelling) library for MongoDB,  helps to create and manage MongoDB documents with node js
+    2. install mongoose in node js app : npm i mongoose
+    3. Schema : A schema defines the structure of your collection documents. A Mongoose schema maps directly to a MongoDB collection. To create schema we have to create an object for mongoose 'schema' class.
+    4. Models take your schema and apply it to each document in its collection. create model in mongoose, use model method, syntax: model('modelname',schema)
+        - Models are responsible for all document interactions like creating, reading, updating and deleting (CRUD).
+    5. In node js, controller will communicate with model in order to manage data in MongoDB.
+    6. CRUD operation in mongoose
+        - to create a document using mongoose in MongoDB, create an object of model with same order of schema, after that we have to save the object inorder to appear changes in MongoDB using save() method in mongoose.
+        - Read/ get document from MongoDB : find(), findOne() , findById()
+        - Update a document: updateOne() , updateMany(), findByIdandUpdate(_id of document,update query)
+        - Delete document: deleteOne(), deleteMany(), findByIdandDelete(_id od document)
+        - mongoose query helpers: skip(), limit(), sort()
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                    JSON WEB TOKEN : JWT : NODE JS PACKAGE FOR AUTHENTICATION
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+    1. Install json web token library:  npm install jsonwebtoken
+    2. Token generation using JWT: sign(payload, password)
+        - payload: used to store data inside token creation
+    3. Token verify using JWT : verify(token,password) return a response if token is verified else error
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+                                    MIDDLEWARE : NODE JS
+---------------------------------------------------------------------------------------------------------------------------------------------
+    1. Used to control request-response cycle in server. Before resolving the request server can perform and task (authorization, data format changing etc) using middleware
+    2. middleware are function, with 3 arguments, they are request,response,next.
+        - Here request will give you client request
+        - response object will give response from server to client
+        - next method used to control request
+    3. Middleware can be 2 types:
+        - Application specific : middleware will acive for all client request
+        - Router specific : middleware will active for only selected route/path
+
+
+                                    MULTER : node.js middleware for handling multipart/form-data
+---------------------------------------------------------------------------------------------------------------------------------------------
+    1. Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
+    2. Multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.
+    3. Install Multer: npm i multer
+    4. Multer can be used to define storage space for uploading files 
